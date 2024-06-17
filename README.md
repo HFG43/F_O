@@ -61,8 +61,8 @@ In order to run this project you need to have Ruby installed, check [this](https
 
 Clone this repository to your desired folder:
 
-  cd my-folder https://github.com/HFG43/Blog_app
-  git clone 
+  cd my-folder 
+  git clone https://github.com/HFG43/F_O.git
 
 ### Usage
 
