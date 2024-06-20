@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :profile_image, style: "display: block" %>
+    <%= form.file_field :profile_image %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
