@@ -1,0 +1,2 @@
+class FamilyMailer < ApplicationMailer
+end
