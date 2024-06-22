@@ -15,7 +15,7 @@ class FamiliesController < ApplicationController
   # POST /families or /families.json
   def create
     @family = Family.new(family_params)
-    
+   
     respond_to do |format|
       if @family.save
         format.html { redirect_to family_url(@family), notice: "Family was successfully created." }

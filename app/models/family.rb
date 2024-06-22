@@ -1,4 +1,5 @@
 class Family < ApplicationRecord
+  has_secure_token
   has_many :users, dependent: :destroy
   has_one_attached :family_image
 
