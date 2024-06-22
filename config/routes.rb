@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :families, only: [:new, :show, :index] do
+  resources :families, only: [:new, :create, :show, :index] do
     resources :users
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

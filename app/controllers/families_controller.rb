@@ -15,7 +15,7 @@ class FamiliesController < ApplicationController
   # POST /families or /families.json
   def create
     @family = Family.new(family_params)
-
+    
     respond_to do |format|
       if @family.save
         format.html { redirect_to family_url(@family), notice: "Family was successfully created." }
@@ -58,6 +58,6 @@ class FamiliesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def family_params
-      params.require(:family).permit(:name, :email, :birthday, :profile_image)
+      params.require(:family).permit(:family_name, :family_registration_email, :family_image)
     end
 end
