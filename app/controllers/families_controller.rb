@@ -18,6 +18,9 @@ class FamiliesController < ApplicationController
    
     respond_to do |format|
       if @family.save
+
+        FamilyMailer.with(family: @family).send_access_token.deliver_later
+     
         format.html { redirect_to family_url(@family), notice: "Family was successfully created." }
         format.json { render :show, status: :created, location: @family }
       else
