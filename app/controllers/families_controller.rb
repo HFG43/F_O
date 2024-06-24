@@ -21,7 +21,7 @@ class FamiliesController < ApplicationController
 
         FamilyMailer.with(family: @family).send_access_token.deliver_later
      
-        format.html { redirect_to family_url(@family), notice: "Family was successfully created." }
+        format.html { redirect_to root_path, notice: "Family was successfully created." }
         format.json { render :show, status: :created, location: @family }
       else
         format.html { render :new, status: :unprocessable_entity }

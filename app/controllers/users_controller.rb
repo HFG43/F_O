@@ -21,17 +21,26 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:family_name, :family_token))
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    puts "Family Name: #{user_params[:family_name]}"
+    puts "Family Token:#{user_params[:family_token]}"
+    puts "User Parameters: #{user_params.inspect}"
+  
+    if !validate_family(user_params[:family_name], user_params[:family_token], @user)
+      flash[:notice] = "Invalid family credentials."
+      render :new, status: :unprocessable_entity
+    else
+      respond_to do |format|
+        if @user.save
+          format.html { redirect_to user_url(@user), notice: "User was successfully created." }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    end  
   end
 
   # PATCH/PUT /users/1 or /users/1.json
@@ -63,8 +72,19 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def validate_family(family_name, family_token, user)
+      family = Family.find_by(family_name: family_name)
+         
+      if family && family_token == family.token
+        user.family_id = family.id
+        true
+      else
+        false
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :birthday, :profile_image)
+      params.require(:user).permit(:name, :email, :birthday, :profile_image, :family_name, :family_token, :family_id)
     end
 end
