@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :families, only: [:new, :create, :show, :index]
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
