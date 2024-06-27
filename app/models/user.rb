@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   has_secure_password :password, validations: true
-  validates :password, presence: true, length: {in:8..20}
   belongs_to :family
   has_one_attached :profile_image
   
