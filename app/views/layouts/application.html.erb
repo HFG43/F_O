@@ -17,7 +17,7 @@
       </div>
       
       <% if current_user %>
-        Logged as <%= currennt_user.email %>
+        Logged as <%= current_user.email %> | <%= link_to "Logout", sessions_path, data: { 'turbo-method': :delete} %>
       <% else %>
         <%= link_to "User Login", new_session_path %>
       <% end %>

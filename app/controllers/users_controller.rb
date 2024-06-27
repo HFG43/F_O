@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params.except(:family_name, :family_token))
+    @user = User.new(user_params.except(:password_confirmation, :family_name, :family_token))
   
     if !validate_family(user_params[:family_name], user_params[:family_token], @user)
       flash[:notice] = "Invalid family credentials."
@@ -81,6 +81,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password_digest, :password_confirmation, :birthday, :profile_image, :family_name, :family_token, :family_id)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :birthday, :profile_image, :family_name, :family_token, :family_id)
     end
 end
