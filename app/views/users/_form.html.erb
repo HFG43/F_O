@@ -27,6 +27,11 @@
   </div>
 
   <div>
+  <%= form.label :password_confirmation, style: "display: block" %>
+  <%= form.password_field :password_confirmation %>
+</div>
+
+  <div>
     <%= form.label :birthday, style: "display: block" %>
     <%= form.date_field :birthday %>
   </div>
