@@ -6,6 +6,7 @@ class FamiliesController < ApplicationController
   end
 
   def show
+    @members = @family.users
   end
     
   # GET /family/1/edit
